@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "server": "node ./bin/www",
+    "frontend": "cd .. && cd frontend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "dependencies": {
+    "concurrently": "^6.2.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
