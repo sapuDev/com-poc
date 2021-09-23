@@ -1,30 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import React, { useEffect, useState, Suspense } from "react";
+import { Layout, Menu, Breadcrumb, Empty } from "antd";
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from "@ant-design/icons";
 
 import { MENU_MAP } from "./constants";
 import { COMPONENT_MAP } from "./componentMap";
-
+import IndividualGreetings from "../containers/greetings/individualGreetings";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 let LayoutComponent = (props) => {
     const { Children } = props;
 
-    const [subMenuItem, setSubMenu] = useState("sub3");
+    const [subMenuItem, setSubMenu] = useState("Greetings");
     const [menuItem, setSMenu] = useState("9");
+    const [menuItemTitle, setSMenuTitle] = useState("Send Individual Greeting");
     console.log("subMenuItem", subMenuItem);
     console.log("menuItem", menuItem);
     console.log("props", props);
 
     const setSMenuItem = (val) => {
-        const obj = COMPONENT_MAP.find((a) => a.key === val);
+        const obj = MENU_MAP.find((a) => a.key === val);
 
         if (obj) {
             setSMenu(val);
             setSubMenu(obj.sub);
+            setSMenuTitle(obj.title);
         }
     };
+
+    const renderComponent = () => {
+        if (COMPONENT_MAP[menuItem]) return COMPONENT_MAP[menuItem]();
+
+        return <Empty />;
+    };
+    console.log();
     return (
         <Layout>
             <Header className="header">
@@ -117,9 +126,9 @@ let LayoutComponent = (props) => {
                 </Sider>
                 <Layout style={{ padding: "0 24px 24px" }}>
                     <Breadcrumb style={{ margin: "16px 0" }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                        <Breadcrumb.Item>Customer Care</Breadcrumb.Item>
+                        <Breadcrumb.Item>{subMenuItem}</Breadcrumb.Item>
+                        <Breadcrumb.Item>{menuItemTitle}</Breadcrumb.Item>
                     </Breadcrumb>
                     <Content
                         className="site-layout-background"
@@ -129,7 +138,7 @@ let LayoutComponent = (props) => {
                             minHeight: 280,
                         }}
                     >
-                        {Children}
+                        <Suspense>{renderComponent()}</Suspense>
                     </Content>
                 </Layout>
             </Layout>
