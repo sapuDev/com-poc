@@ -85,7 +85,7 @@ let LayoutComponent = (props) => {
                                     setSMenuItem("6");
                                 }}
                             >
-                                Branck List
+                                Brank List
                             </Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" icon={<NotificationOutlined />} title="Greetings">
