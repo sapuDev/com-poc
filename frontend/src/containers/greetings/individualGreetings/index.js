@@ -16,13 +16,13 @@ let IndividualGreetings = (props) => {
                 </Col>
                 <Col xl={8} lg={12} xs={24}>
                     <Select defaultValue="birthdays" style={{ width: "100%" }} onChange={handleChange}>
-                        <Option value="birthdays">Birth day</Option>
+                        <Option value="birthdays">Birthday</Option>
                         <Option value="New year">New year</Option>
                         <Option value="christmas">Christmas</Option>
                     </Select>
                 </Col>
             </Row>
-            <Row className="input-wrapper margin-top">
+            <Row className="input-wrapper">
                 <Col xl={6} lg={12} xs={24}>
                     Customer email
                 </Col>
