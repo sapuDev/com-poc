@@ -64,3 +64,16 @@
     line-height: 64px;
     background: #ffffff;
 }
+
+.input-wrapper {
+  margin-top: 10px;
+  margin-left: 20%;
+}
+
+.margin-top {
+  margin-top: 5%;
+}
+
+.align-right {
+  text-align: right;
+}

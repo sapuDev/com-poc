@@ -1,4 +1,5 @@
 import IndividualGreetings from "../containers/greetings/individualGreetings";
+import Bulk from "../containers/greetings/bulk";
 
 export const COMPONENT_MAP = {
     1: (props) => <IndividualGreetings {...props} />,
@@ -11,7 +12,7 @@ export const COMPONENT_MAP = {
 
     9: (props) => <IndividualGreetings {...props} />,
 
-    10: (props) => <IndividualGreetings {...props} />,
+    10: (props) => <Bulk {...props} />,
 
     11: (props) => <IndividualGreetings {...props} />,
 
