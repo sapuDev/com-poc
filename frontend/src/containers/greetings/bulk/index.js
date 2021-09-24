@@ -1,35 +1,8 @@
 import React, { useState } from "react";
-import { Col, Row, Button, Select, Table } from "antd";
-const { Option } = Select;
+import { Col, Row, Button, Select, Table, Input, Space } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
-const columns = [
-    {
-        title: "Name",
-        dataIndex: "name",
-    },
-    {
-        title: "NIC number",
-        dataIndex: "nic",
-        sorter: (a, b) => a.nic - b.nic,
-        sortDirections: ["descend", "ascend"],
-    },
-    {
-        title: "Date of birth",
-        dataIndex: "birthDay",
-    },
-    {
-        title: "Email",
-        dataIndex: "email",
-    },
-    {
-        title: "Mobile Number",
-        dataIndex: "phoneNumber",
-    },
-    {
-        title: "Address",
-        dataIndex: "address",
-    },
-];
+const { Option } = Select;
 
 const data = [];
 for (let i = 0; i < 46; i++) {
@@ -47,6 +20,8 @@ for (let i = 0; i < 46; i++) {
 let Bulk = (props) => {
     const [selectedRowKeys, setselectedRowKeys] = useState([]);
     const [loading, setloading] = useState(false);
+    const [searchText, setsearchText] = useState("");
+    const [searchedColumn, setsearchedColumn] = useState("");
 
     const handleChange = (value) => {
         console.log(`selected ${value}`);
@@ -67,6 +42,83 @@ let Bulk = (props) => {
     };
 
     const hasSelected = selectedRowKeys && selectedRowKeys.length > 0 ? true : false;
+
+    const getColumnSearchProps = (dataIndex) => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div style={{ padding: 8 }}>
+                <Input
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{ marginBottom: 8, display: "block" }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{ width: 90 }}
+                    >
+                        Search
+                    </Button>
+                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+                        Reset
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />,
+        onFilter: (value, record) =>
+            record[dataIndex] ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()) : "",
+    });
+
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setsearchText([0]);
+        setsearchedColumn(dataIndex);
+    };
+
+    const handleReset = (clearFilters) => {
+        clearFilters();
+        setsearchText("");
+    };
+
+    const columns = [
+        {
+            title: "Name",
+            dataIndex: "name",
+            ...getColumnSearchProps("name"),
+        },
+        {
+            title: "NIC number",
+            dataIndex: "nic",
+            ...getColumnSearchProps("nic"),
+            sorter: (a, b) => a.nic - b.nic,
+            sortDirections: ["descend", "ascend"],
+        },
+        {
+            title: "Date of birth",
+            dataIndex: "birthDay",
+            ...getColumnSearchProps("birthDay"),
+        },
+        {
+            title: "Email",
+            dataIndex: "email",
+            ...getColumnSearchProps("email"),
+        },
+        {
+            title: "Mobile Number",
+            dataIndex: "phoneNumber",
+            ...getColumnSearchProps("phoneNumber"),
+        },
+        {
+            title: "Address",
+            dataIndex: "address",
+        },
+    ];
+
     return (
         <>
             <Row className="input-wrapper-without-margin margin-top">
