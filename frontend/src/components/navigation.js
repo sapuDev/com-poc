@@ -1,22 +1,16 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { Layout, Menu, Breadcrumb, Empty } from "antd";
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from "@ant-design/icons";
 
 import { MENU_MAP } from "./constants";
 import { COMPONENT_MAP } from "./componentMap";
-import IndividualGreetings from "../containers/greetings/individualGreetings";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 let LayoutComponent = (props) => {
-    const { Children } = props;
-
     const [subMenuItem, setSubMenu] = useState("Greetings");
     const [menuItem, setSMenu] = useState("9");
     const [menuItemTitle, setSMenuTitle] = useState("Send Individual Greeting");
-    console.log("subMenuItem", subMenuItem);
-    console.log("menuItem", menuItem);
-    console.log("props", props);
 
     const setSMenuItem = (val) => {
         const obj = MENU_MAP.find((a) => a.key === val);
@@ -70,14 +64,14 @@ let LayoutComponent = (props) => {
                                 List
                             </Menu.Item>
                         </SubMenu>
-                        <SubMenu key="sub2" icon={<LaptopOutlined />} title="Bank Details">
+                        <SubMenu key="sub2" icon={<LaptopOutlined />} title="Branch Details">
                             <Menu.Item
                                 key="5"
                                 onClick={() => {
                                     setSMenuItem("5");
                                 }}
                             >
-                                Update Branchs
+                                Update
                             </Menu.Item>
                             <Menu.Item
                                 key="6"
@@ -85,7 +79,7 @@ let LayoutComponent = (props) => {
                                     setSMenuItem("6");
                                 }}
                             >
-                                Brank List
+                                Branch List
                             </Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" icon={<NotificationOutlined />} title="Greetings">

@@ -70,6 +70,15 @@
   margin-left: 20%;
 }
 
+.input-wrapper-small {
+  margin-top: 10px;
+  margin-left: 10%;
+}
+
+.lable-padding {
+  margin-left: 40px;
+}
+
 .input-wrapper-without-margin {
   margin-top: 10px;
 }
@@ -79,4 +88,8 @@
 
 .align-right {
   text-align: right;
+}
+
+.row-padding {
+  margin-top: 10px;
 }
