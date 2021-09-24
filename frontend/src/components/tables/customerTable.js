@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Input, Button, Space } from "antd";
+import { Table, Input, Button, Space, Row, Col, Modal } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 const data = [];
@@ -17,6 +17,8 @@ for (let i = 0; i < 46; i++) {
 let CustomerTable = () => {
     const [searchText, setsearchText] = useState("");
     const [searchedColumn, setsearchedColumn] = useState("");
+    const [visible, setvisible] = useState(false);
+    const [editEmail, seteditEmail] = useState(null);
 
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -59,6 +61,11 @@ let CustomerTable = () => {
         clearFilters();
         setsearchText("");
     };
+    const handleEdit = (datam) => {
+        console.log("email", datam.email);
+        seteditEmail(datam.email);
+        setvisible(true);
+    };
 
     const columns = [
         {
@@ -92,9 +99,107 @@ let CustomerTable = () => {
             title: "Address",
             dataIndex: "address",
         },
+        {
+            title: "Edit",
+            dataIndex: "edit",
+            render: (edit, data) => (
+                <Button type="primary" onClick={() => handleEdit(data)} size="small" style={{ width: 90 }}>
+                    Edit
+                </Button>
+            ),
+        },
     ];
     return (
         <>
+            {visible ? (
+                <Modal
+                    visible={visible}
+                    title="Update Information"
+                    onOk={() => {
+                        setvisible(false);
+                    }}
+                    onCancel={() => {
+                        setvisible(false);
+                    }}
+                    footer={[
+                        <Button
+                            key="back"
+                            onClick={() => {
+                                setvisible(false);
+                            }}
+                        >
+                            Return
+                        </Button>,
+                        <Button
+                            key="submit"
+                            type="primary"
+                            onClick={() => {
+                                setvisible(false);
+                            }}
+                        >
+                            Submit
+                        </Button>,
+                    ]}
+                >
+                    <Row className="row-padding">
+                        <Col xl={12} lg={12} xs={24}>
+                            Email
+                        </Col>
+                        <Col xl={12} lg={12} xs={24}>
+                            <Input placeholder="Customer email" value={data.find((a) => a.email === editEmail).email} />
+                        </Col>
+                    </Row>
+                    <Row className="row-padding">
+                        <Col xl={12} lg={12} xs={24}>
+                            Name
+                        </Col>
+                        <Col xl={12} lg={12} xs={24}>
+                            <Input placeholder="Customer email" value={data.find((a) => a.email === editEmail).name} />
+                        </Col>
+                    </Row>
+                    <Row className="row-padding">
+                        <Col xl={12} lg={12} xs={24}>
+                            NIC
+                        </Col>
+                        <Col xl={12} lg={12} xs={24}>
+                            <Input placeholder="Customer email" value={data.find((a) => a.email === editEmail).nic} />
+                        </Col>
+                    </Row>
+                    <Row className="row-padding">
+                        <Col xl={12} lg={12} xs={24}>
+                            Mobile
+                        </Col>
+                        <Col xl={12} lg={12} xs={24}>
+                            <Input
+                                placeholder="Customer email"
+                                value={data.find((a) => a.email === editEmail).phoneNumber}
+                            />
+                        </Col>
+                    </Row>
+                    <Row className="row-padding">
+                        <Col xl={12} lg={12} xs={24}>
+                            Address
+                        </Col>
+                        <Col xl={12} lg={12} xs={24}>
+                            <Input
+                                placeholder="Customer email"
+                                value={data.find((a) => a.email === editEmail).address}
+                            />
+                        </Col>
+                    </Row>
+                    <Row className="row-padding">
+                        <Col xl={12} lg={12} xs={24}>
+                            Birth Day
+                        </Col>
+                        <Col xl={12} lg={12} xs={24}>
+                            <Input
+                                placeholder="Customer email"
+                                value={data.find((a) => a.email === editEmail).birthDay}
+                            />
+                        </Col>
+                    </Row>
+                </Modal>
+            ) : null}
             <Table columns={columns} dataSource={data} />
         </>
     );

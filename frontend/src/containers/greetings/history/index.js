@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Button, Input, Table, Space } from "antd";
+import { Col, Row, Button, Input, Table, Space, Tag } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 const data = [];
@@ -101,6 +101,19 @@ let History = (props) => {
             onFilter: (value, record) => record.emailStatus.startsWith(value),
             filterSearch: true,
             width: "10%",
+            render: (emailStatus, data) => (
+                <>
+                    {data.emailStatus === "Suncess" ? (
+                        <Tag color={"green"} key={"Suncess"}>
+                            Suncess
+                        </Tag>
+                    ) : (
+                        <Tag color={"volcano"} key={"Failed"}>
+                            Failed
+                        </Tag>
+                    )}
+                </>
+            ),
         },
         {
             title: "SMS Status",
@@ -118,6 +131,19 @@ let History = (props) => {
             onFilter: (value, record) => record.smsStatus.startsWith(value),
             filterSearch: true,
             width: "10%",
+            render: (smsStatus, data) => (
+                <>
+                    {data.smsStatus === "Suncess" ? (
+                        <Tag color={"green"} key={"Suncess"}>
+                            Suncess
+                        </Tag>
+                    ) : (
+                        <Tag color={"volcano"} key={"Failed"}>
+                            Failed
+                        </Tag>
+                    )}
+                </>
+            ),
         },
         {
             title: "Date",
