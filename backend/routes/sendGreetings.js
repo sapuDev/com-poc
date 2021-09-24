@@ -16,7 +16,8 @@ router.post("/", function(req, res, next) {
         whatsappService.sendWhatsappMessage(
           req.body.contact,
           req.body.from,
-          req.body.template
+          req.body.template,
+          req.body.name
         );
         break;
       case "EW":
@@ -28,11 +29,12 @@ router.post("/", function(req, res, next) {
         whatsappService.sendWhatsappMessage(
           req.body.contact,
           req.body.from,
-          req.body.template
+          req.body.template,
+          req.body.name
         );
         break;
       case "S":
-        smsService.sendSMS(req.body.contact, req.body.from, req.body.template);
+        smsService.sendSMS(req.body.contact, req.body.from, req.body.template, req.body.name);
         break;
       case "ES":
         emailService.sendEmail(
@@ -40,7 +42,7 @@ router.post("/", function(req, res, next) {
           req.body.template,
           req.body.name
         );
-        smsService.sendSMS(req.body.contact, req.body.from, req.body.template);
+        smsService.sendSMS(req.body.contact, req.body.from, req.body.template, req.body.name);
       default:
         break;
     }
