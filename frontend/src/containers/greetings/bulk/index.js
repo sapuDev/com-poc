@@ -22,6 +22,7 @@ let Bulk = (props) => {
     const [loading, setloading] = useState(false);
     const [searchText, setsearchText] = useState("");
     const [searchedColumn, setsearchedColumn] = useState("");
+    console.log("searchText", searchText, searchedColumn);
 
     const handleChange = (value) => {
         console.log(`selected ${value}`);

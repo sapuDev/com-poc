@@ -19,6 +19,7 @@ for (let i = 1; i < 46; i++) {
 let History = (props) => {
     const [searchText, setsearchText] = useState("");
     const [searchedColumn, setsearchedColumn] = useState("");
+    console.log("searchText", searchText, searchedColumn);
 
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (

@@ -19,6 +19,7 @@ let CustomerTable = () => {
     const [searchedColumn, setsearchedColumn] = useState("");
     const [visible, setvisible] = useState(false);
     const [editEmail, seteditEmail] = useState(null);
+    console.log("searchText", searchText, searchedColumn);
 
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (

@@ -1,13 +1,8 @@
 import React from "react";
-import { Col, Row, Button, Input, Select } from "antd";
+import { Col, Row, Button, Select } from "antd";
 const { Option } = Select;
 
 let ScheduleGreetings = (props) => {
-    console.log("props.............", props);
-
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
-    };
     return (
         <div>
             <Row className="input-wrapper-small margin-top">

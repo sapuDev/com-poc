@@ -1,7 +1,8 @@
 const {emailHelper} = require("../helpers");
 
-const sendEmail = (to, template, name) => {
-  emailHelper.sendEmail(to, template, name);
+const sendEmail = async (to, template, name) => {
+    const res = await emailHelper.sendEmail(to, template, name);
+    return res;
 };
 module.exports = {
   sendEmail

@@ -1,5 +1,5 @@
 import React from "react";
-import { Router as ReactRouter, Route, Switch, Redirect } from "react-router";
+import { Router as ReactRouter, Route, Switch } from "react-router";
 
 import { history } from "../helpers/history";
 
