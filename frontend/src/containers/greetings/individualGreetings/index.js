@@ -60,7 +60,8 @@ let IndividualGreetings = (props) => {
                 </Col>
                 <Col xl={8} lg={12} xs={24}>
                     <Form.Item name="branch" rules={[{ required: false, message: "Please select branch!" }]}>
-                        <Select defaultValue="Colombo" style={{ width: "100%" }} onChange={handleChange}>
+                        <Select defaultValue="selctbranch" style={{ width: "100%" }} onChange={handleChange}>
+                            <Option value="selctbranch">Select branch</Option>
                             <Option value="Colombo">Colombo</Option>
                             <Option value="Colombo-fort">Colombo fort</Option>
                             <Option value="disabled" disabled>

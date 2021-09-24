@@ -1,7 +1,7 @@
 const {whatsAppHelper} = require("../helpers");
 
-const sendWhatsappMessage = async (to, from, template, name) => {
-    const res = whatsAppHelper.senWhatsAppMessage(to, from, template, name);
+const sendWhatsappMessage = async (data) => {
+    const res = whatsAppHelper.senWhatsAppMessage(data);
     return res;
 };
 module.exports = {

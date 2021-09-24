@@ -10,13 +10,14 @@ const createEmailTemplate = (templateName, data) => {
         ejs.renderFile(filePath, data, (err, str) => {
             console.log("err", err);
             if (err) return reject(err);
-            console.log("str", str);
+            console.log("str");
             resolve(str);
         });
     });
 };
 
-const sendEmail = async (to, template, name) => {
+const sendEmail = async (data) => {
+    const { email, template, name, branch } = data;
     let mailTransporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -26,14 +27,15 @@ const sendEmail = async (to, template, name) => {
     });
     console.log("template", template);
     console.log("name", name);
-    const _template = await createEmailTemplate(`${template}.ejs`, { name });
+    console.log("branch", branch);
+    const _template = await createEmailTemplate(`${template}.ejs`, { name, branch });
     let mailDetails = {
         from: EMAIL,
-        to: to,
+        to: email,
         subject: "GREATINGS",
         html: _template,
     };
-    console.log("mailDetails", mailDetails);
+
     mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
             console.log("Error Occurs", err);

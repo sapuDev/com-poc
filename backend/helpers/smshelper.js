@@ -1,6 +1,7 @@
 const {ACCOUNT_SID, AUTH_TOKEN} = require("../config");
 const client = require("twilio")(ACCOUNT_SID, AUTH_TOKEN);
-const sendSMS = async (to, from, template, name) => {
+const sendSMS = async (data) => {
+    const { to, from, template, name, branch } = data;
     try {
         client.messages
             .create({
