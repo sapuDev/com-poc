@@ -64,14 +64,14 @@ let LayoutComponent = (props) => {
                                 List
                             </Menu.Item>
                         </SubMenu>
-                        <SubMenu key="sub2" icon={<LaptopOutlined />} title="Bank Details">
+                        <SubMenu key="sub2" icon={<LaptopOutlined />} title="Branch Details">
                             <Menu.Item
                                 key="5"
                                 onClick={() => {
                                     setSMenuItem("5");
                                 }}
                             >
-                                Update Branchs
+                                Update
                             </Menu.Item>
                             <Menu.Item
                                 key="6"
@@ -79,7 +79,7 @@ let LayoutComponent = (props) => {
                                     setSMenuItem("6");
                                 }}
                             >
-                                Brank List
+                                Branch List
                             </Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" icon={<NotificationOutlined />} title="Greetings">

@@ -11,12 +11,12 @@ export const MENU_MAP = [
     },
     {
         key: "5",
-        sub: "Bank Details",
+        sub: "Branch Details",
         title: "Update Branchs",
     },
     {
         key: "6",
-        sub: "Bank Details",
+        sub: "Branch Details",
         title: "Branck List",
     },
     {
