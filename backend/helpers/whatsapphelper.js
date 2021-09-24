@@ -5,7 +5,7 @@ const senWhatsAppMessage = (to, from, template) => {
     .create({
       from: "whatsapp:+14155238886",
       body: "Hi " + template + " to you " + to + " from " + from,
-      to: "whatsapp:+94710985700"
+      to: "whatsapp:"+to
     })
     .then(message => console.log(message.sid));
 };
