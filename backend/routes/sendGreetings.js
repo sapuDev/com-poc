@@ -4,7 +4,7 @@ const {whatsappService, emailService, smsService} = require("../services");
 
 router.post("/", async function (req, res, next) {
     try {
-        const { type: template, email, name, from, to, branch } = req.body;
+        const { type, template, email, name, from, to, branch } = req.body;
         let typeCase = email && to ? "ESW" : email ? "E" : null;
         switch (typeCase) {
             case "E":

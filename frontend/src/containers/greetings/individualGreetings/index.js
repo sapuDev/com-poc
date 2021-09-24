@@ -11,6 +11,7 @@ let IndividualGreetings = (props) => {
     };
     const onFinish = (values) => {
         setInprogress(true);
+        console.log("values........", values);
         sendMessages(values, () => {
             setInprogress(false);
         });
@@ -24,7 +25,8 @@ let IndividualGreetings = (props) => {
                 </Col>
                 <Col xl={8} lg={12} xs={24}>
                     <Form.Item name="type" rules={[{ required: false, message: "Please select template!" }]}>
-                        <Select defaultValue="birthdays" style={{ width: "100%" }} onChange={handleChange}>
+                        <Select defaultValue="selct" style={{ width: "100%" }} onChange={handleChange}>
+                            <Option value="selct">Select greeting</Option>
                             <Option value="birthdays">Birthday</Option>
                             <Option value="newyear">New year</Option>
                             <Option value="christmas">Christmas</Option>
