@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Button, Input, Select, Table } from "antd";
+import { Col, Row, Button, Select, Table } from "antd";
 const { Option } = Select;
 
 const columns = [
