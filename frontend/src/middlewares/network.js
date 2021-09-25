@@ -23,15 +23,15 @@ const openFailNotification = () => {
 };
 
 const sendMessages = (props, callback) => {
-    const { to, type, email, branch } = props;
+    const { to, type, email, branch, name, from } = props;
     axios
         .post(urlMap.send, {
-            name: "name",
+            name,
             type,
             to,
             email,
             template: type,
-            from: "combank",
+            from,
             branch,
         })
         .then(function (response) {

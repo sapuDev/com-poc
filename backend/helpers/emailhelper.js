@@ -17,7 +17,7 @@ const createEmailTemplate = (templateName, data) => {
 };
 
 const sendEmail = async (data) => {
-    const { email, template, name, branch } = data;
+    const { email, template, name, branch, from } = data;
     let mailTransporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -28,7 +28,7 @@ const sendEmail = async (data) => {
     console.log("template", template);
     console.log("name", name);
     console.log("branch", branch);
-    const _template = await createEmailTemplate(`${template}.ejs`, { name, branch });
+    const _template = await createEmailTemplate(`${template}.ejs`, { name, branch, from });
     let mailDetails = {
         from: EMAIL,
         to: email,

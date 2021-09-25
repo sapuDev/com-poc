@@ -14,6 +14,8 @@ for (let i = 0; i < 46; i++) {
         address: `London, Park Lane no. ${i}`,
     });
 }
+
+
 let CustomerTable = () => {
     const [searchText, setsearchText] = useState("");
     const [searchedColumn, setsearchedColumn] = useState("");

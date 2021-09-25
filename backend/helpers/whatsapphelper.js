@@ -10,8 +10,11 @@ const senWhatsAppMessage = (data) => {
                 to: "whatsapp:" + to,
             })
             .then((message) => console.log(message.sid));
+
+            console.log("send whatsapp");
         return true;
     } catch (error) {
+        console.log('error whatsapp',error);
         return error;
     }
 };

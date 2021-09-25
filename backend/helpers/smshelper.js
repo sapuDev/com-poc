@@ -10,8 +10,11 @@ const sendSMS = async (data) => {
                 to: to,
             })
             .then((message) => console.log(message.sid));
+
+            console.log('send SMS');
         return true;
     } catch (error) {
+        console.log('error',error);
         return error;
     }
 };

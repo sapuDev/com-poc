@@ -1,21 +1,43 @@
 import React, { useState } from "react";
-import { Col, Row, Button, Input, Select, Form, Spin } from "antd";
+import { Col, Row, Button, Input, Select, Form, Spin, AutoComplete } from "antd";
 import { sendMessages } from "../../../middlewares";
 import { LoadingOutlined } from "@ant-design/icons";
+import { data } from "./constants";
+
 const { Option } = Select;
+const { Option: AutoCompleteOption } = AutoComplete;
 
 let IndividualGreetings = (props) => {
     const [inprogress, setInprogress] = useState(false);
+    const [result, setResult] = useState([]);
+
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
     const onFinish = (values) => {
         setInprogress(true);
         console.log("values........", values);
+
+        values.name = data.find((domain) => domain.email === values.email)
+            ? data.find((domain) => domain.email === values.email).name
+            : "Edword";
         sendMessages(values, () => {
             setInprogress(false);
         });
     };
+    const handleSearch = (value) => {
+        let res = [];
+
+        if (!value || value.indexOf("@") >= 0) {
+            res = [];
+        } else {
+            const silt = data.filter((domain) => domain.email.includes(value));
+            res = silt.length ? silt.map((a) => `${a.email}`) : [];
+        }
+
+        setResult(res);
+    };
+
     const antIcon = <LoadingOutlined style={{ fontSize: 18, color: "white", paddingRight: "5px" }} spin />;
     return (
         <Form onFinish={onFinish}>
@@ -40,7 +62,13 @@ let IndividualGreetings = (props) => {
                 </Col>
                 <Col xl={8} lg={12} xs={24}>
                     <Form.Item name="email" rules={[{ required: false, message: "Please input your Email!" }]}>
-                        <Input placeholder="Email address" />
+                        <AutoComplete onSearch={handleSearch} placeholder="input here">
+                            {result.map((email) => (
+                                <AutoCompleteOption key={email} value={email}>
+                                    {email}
+                                </AutoCompleteOption>
+                            ))}
+                        </AutoComplete>
                     </Form.Item>
                 </Col>
             </Row>
@@ -79,14 +107,14 @@ let IndividualGreetings = (props) => {
                 </Col>
                 <Col xl={8} lg={12} xs={24}>
                     <Form.Item name="from" rules={[{ required: false, message: "Please select branch!" }]}>
-                        <Select defaultValue="samanperera@gmail.com" style={{ width: "100%" }} onChange={handleChange}>
-                            <Option value="samanperera@gmail.com">Saman perera</Option>
-                            <Option value="Jagathfernando@gmail.com">Jagath fernando</Option>
-                            <Option value="Sadundarshana@gmail.com" disabled>
+                        <Select defaultValue="Saman perera" style={{ width: "100%" }} onChange={handleChange}>
+                            <Option value="Saman perera">Saman perera</Option>
+                            <Option value="Jagath fernando">Jagath fernando</Option>
+                            <Option value="Sadun darshana" disabled>
                                 Sadun darshana
                             </Option>
-                            <Option value="gayashan.galagedara@1billiontech.com">Gayashan sameera</Option>
-                            <Option value="sapumal.thepuangoda@1billiontech.com">Sapumal thepulangoda</Option>
+                            <Option value="Gayashan sameera">Gayashan sameera</Option>
+                            <Option value="Sapumal thepulangoda">Sapumal thepulangoda</Option>
                         </Select>
                     </Form.Item>
                 </Col>

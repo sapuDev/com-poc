@@ -8,23 +8,23 @@ router.post("/", async function (req, res, next) {
         let typeCase = email && to ? "ESW" : email ? "E" : null;
         switch (typeCase) {
             case "E":
-                await emailService.sendEmail({email, template, name , branch});
+                await emailService.sendEmail({email, template, name , branch, from});
                 break;
             case "W":
                 await whatsappService.sendWhatsappMessage({to, from, template, name, branch});
                 break;
             case "EW":
-                await emailService.sendEmail({email, template, name , branch});
+                await emailService.sendEmail({email, template, name , branch, from});
                 await whatsappService.sendWhatsappMessage({to, from, template, name, branch});
                 break;
             case "S":
                 await smsService.sendSMS({to, from, template, name, branch});
                 break;
             case "ES":
-                await emailService.sendEmail({email, template, name , branch});
+                await emailService.sendEmail({email, template, name , branch, from});
                 await smsService.sendSMS({to, from, template, name, branch});
             case "ESW":
-                await emailService.sendEmail({email, template, name , branch});
+                await emailService.sendEmail({email, template, name , branch, from});
                 await smsService.sendSMS({to, from, template, name, branch});
                 await whatsappService.sendWhatsappMessage({to, from, template, name, branch});
             default:
