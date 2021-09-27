@@ -467,4 +467,13 @@ export const data = [
         phoneNumber: +94763423804,
         address: "London, Park Lane no. 45",
     },
+    {
+        key: 52,
+        name: "amith mendis",
+        nic: 90333123279,
+        birthDay: "1990/01/01",
+        email: "amith.mendis@1billiontech.com",
+        phoneNumber: +94763423804,
+        address: "London, Park Lane no. 45",
+    },
 ];

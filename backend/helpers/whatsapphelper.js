@@ -2,6 +2,8 @@ const {ACCOUNT_SID, AUTH_TOKEN} = require("../config");
 const client = require("twilio")(ACCOUNT_SID, AUTH_TOKEN);
 const senWhatsAppMessage = (data) => {
     const { to, from, template, name, branch } = data;
+
+    console.log("object", to, from, template, name, branch);
     try {
         client.messages
             .create({
