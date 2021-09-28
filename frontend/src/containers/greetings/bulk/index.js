@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Button, Select, Table, Input, Space } from "antd";
+import { Col, Row, Button, Select, Table, Input, Space, Checkbox } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
@@ -120,6 +120,12 @@ let Bulk = (props) => {
         },
     ];
 
+    const plainOptions = [
+        { value: "sendEmails", label: "email" },
+        { value: "sendSms", label: "sms" },
+        { value: "sendWhatsap", label: "whatsapp" },
+    ];
+
     return (
         <>
             <Row className="input-wrapper-without-margin margin-top">
@@ -161,6 +167,11 @@ let Bulk = (props) => {
                             dataSource={data}
                         />
                     </div>
+                </Col>
+            </Row>
+            <Row className="input-wrapper-without-margin">
+                <Col xl={6} lg={12} xs={24}>
+                    <Checkbox.Group options={plainOptions} />
                 </Col>
             </Row>
             <Row className="input-wrapper-without-margin">

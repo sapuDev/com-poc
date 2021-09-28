@@ -4,7 +4,7 @@ const templateHelper = require("./templateHelper");
 const senWhatsAppMessage = (data) => {
     const { to, from, template, name, branch } = data;
     const newTemplate = templateHelper.SetTemplate(template);
-    console.log("object", to, from, template, name, branch);
+    console.log("object", to, from, newTemplate, name, branch);
 
     try {
         client.messages
