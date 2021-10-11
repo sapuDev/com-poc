@@ -3,18 +3,19 @@ import { Table, Input, Button, Space, Row, Col, Modal } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 const data = [];
+const branches = ["Kandy", "Colombo", "Gampaha", "Galle", "Hambanthota"];
 for (let i = 0; i < 46; i++) {
     data.push({
         key: i,
         name: `Edward King ${i}`,
         nic: 99333123234 + i,
+        branch: branches[i % 5],
         birthDay: `1990/01/01`,
         email: `edwardking${i}@gmail.com`,
         phoneNumber: 31243231331,
         address: `London, Park Lane no. ${i}`,
     });
 }
-
 
 let CustomerTable = () => {
     const [searchText, setsearchText] = useState("");
@@ -82,6 +83,11 @@ let CustomerTable = () => {
             ...getColumnSearchProps("nic"),
             sorter: (a, b) => a.nic - b.nic,
             sortDirections: ["descend", "ascend"],
+        },
+        {
+            title: "Branch",
+            dataIndex: "branch",
+            ...getColumnSearchProps("branch"),
         },
         {
             title: "Date of birth",
@@ -166,6 +172,18 @@ let CustomerTable = () => {
                         </Col>
                         <Col xl={12} lg={12} xs={24}>
                             <Input placeholder="Customer email" value={data.find((a) => a.email === editEmail).nic} />
+                        </Col>
+                    </Row>
+
+                    <Row className="row-padding">
+                        <Col xl={12} lg={12} xs={24}>
+                            Branch
+                        </Col>
+                        <Col xl={12} lg={12} xs={24}>
+                            <Input
+                                placeholder="Customer email"
+                                value={data.find((a) => a.email === editEmail).branch}
+                            />
                         </Col>
                     </Row>
                     <Row className="row-padding">

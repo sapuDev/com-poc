@@ -12,12 +12,12 @@ export const MENU_MAP = [
     {
         key: "5",
         sub: "Branch Details",
-        title: "Update Branchs",
+        title: "Update",
     },
     {
         key: "6",
         sub: "Branch Details",
-        title: "Branck List",
+        title: "Sender Details",
     },
     {
         key: "9",

@@ -79,7 +79,7 @@ let LayoutComponent = (props) => {
                                     setSMenuItem("6");
                                 }}
                             >
-                                Branch List
+                                Sender Details
                             </Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" icon={<NotificationOutlined />} title="Greetings">
