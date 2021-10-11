@@ -104,6 +104,7 @@ let ScheduleGreetings = (props) => {
                         <Option value="everyDay">Every day</Option>
                         <Option value="onceaweek">Once a week</Option>
                         <Option value="onceamonth">Once a month</Option>
+                        <Option value="onceayear">Once a year</Option>
                         <Option value="specialDates">Custom dates</Option>
                     </Select>
                 </Col>
