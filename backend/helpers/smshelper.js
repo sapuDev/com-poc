@@ -8,7 +8,7 @@ const sendSMS = async (data) => {
     try {
         client.messages
             .create({
-                body: `Hi ${name}, ${newTemplate} from  ${from}.`,
+                body: `Hi ${name}, ${newTemplate} from  ${from}!`,
                 from: "+12012796019",
                 to: to,
             })
